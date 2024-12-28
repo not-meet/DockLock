@@ -67,7 +67,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="auth-form">
           <h1 className='form-title'>{type === 'sign-in' ? 'Sign In !' : 'Sign up!'}</h1>
-
           {type === 'sign-up' && <FormField
             control={form.control}
             name="fullName"
@@ -83,21 +82,27 @@ const AuthForm = ({ type }: { type: FormType }) => {
               </FormItem>
             )}
           />}
-          {type === 'sign-up' && <FormField
+          <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
                 <div className="shad-form-item">
                   <FormLabel className="shad-form-label">Email</FormLabel>
+
                   <FormControl>
-                    <Input placeholder="what's your email?" className="shad-input" {...field} />
+                    <Input
+                      placeholder="Enter your email"
+                      className="shad-input"
+                      {...field}
+                    />
                   </FormControl>
                 </div>
+
                 <FormMessage className="shad-form-message" />
               </FormItem>
             )}
-          />}
+          />
           <Button className="form-submit-button" type="submit" disabled={isLoading}>{type === 'sign-in' ? 'Sign in!' : 'Sign up!'}
             {isLoading && (
               <Image alt="loader" src='/assets/icons/loader.svg' className="ml-2 animate-spin" height={24} width={24} />
